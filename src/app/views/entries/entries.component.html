@@ -1,0 +1,21 @@
+<div class="main">
+  <div class="row">
+    <div class="col">
+      <div *ngFor="let entry of entries">
+          <ul>
+              <button [ngStyle]="{'color':click}" style="width:80%" type="button" class="btn btn-primary" (click)="changeEntry(entry);click = 'red'">{{entry.date}}</button>
+          </ul>
+      </div>
+    </div>
+    <div class="col-8">
+        <main role="main" class="container">
+            <div class="jumbotron">
+              <h1>{{entryDate}}</h1>
+              <p class="lead">{{currentText}}</p>
+            </div>
+          </main>
+    </div>
+    <div class="col">
+    </div>
+</div>
+</div>

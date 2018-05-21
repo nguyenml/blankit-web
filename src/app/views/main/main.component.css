@@ -1,0 +1,28 @@
+.center_top{
+	padding-left: 30px; 
+	padding-right: 30px;
+}
+
+.center_top p{
+	margin: 0
+}
+
+hr{
+	padding: 0 0 0 0;
+}
+
+.text{
+    border:none;
+	resize: none; 
+	outline: none; 
+	width: 100%; 
+	align-self: center;
+	border-radius: 21px 21px 21px 21px;
+    padding-top: 23px;
+	padding-left: 45px;
+	padding-right: 45px;
+	padding-bottom: 23px;
+    font-size: 20px;
+	overflow: auto;
+	box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}

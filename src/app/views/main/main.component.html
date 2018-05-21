@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Journal</title>
+	<meta charset="utf-8"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="padding: 0">
+
+	<div class="bg-light text-black text-center overflow-hidden" style="height:100%">
+        <div class="my-3 py-3">
+          <h2 class="display-5">Entry {{entryNumber}}</h2>
+          <p class="lead">{{dateLabel}}</p>
+        </div>
+        <div class="box-shadow mx-auto"  style="width: 50%;">
+            <textarea autosize  placeholder="Time to write." class="text bg-white box-shadow mx-auto" (input)="wordcount($event.target.value)">{{currentText}}</textarea>
+		</div>
+		<div class="mx-auto" style="width: 50%; text-align: right;">
+			<p class="words" style="align:right;">{{wordCountLabel}}</p>
+		</div>
+	  </div>
+	  
+</body>
+</html>

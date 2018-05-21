@@ -1,0 +1,14 @@
+<body>
+		<div id="login_div" class="main-div">
+      <h3>Firebase Web login Example</h3>
+      <form name = "userform" method="post" #formCtrl="ngForm">
+        <input type="email" class="form-control" placeholder="Email..." id="email_field"  [(ngModel)]="user.email" name="email" required/>
+        <input type="password"  class="form-control" placeholder="Password..." id="password_field" [(ngModel)]="user.password" name="password" required/>
+
+        <button type="button" (click)="signInWithEmail()" >Login to Account</button>
+      </form>
+      <div>
+        <a routerLink="/signup" class="goSignUp">Don't have an account? Create one now</a>
+      </div>
+    </div>
+</body>
