@@ -19,9 +19,13 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/cal-heatmap/cal-heatmap.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/d3/d3.min.js",
+        "../node_modules/cal-heatmap/cal-heatmap.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

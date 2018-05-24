@@ -3,7 +3,7 @@
     <div class="col">
       <div *ngFor="let entry of entries">
           <ul>
-              <button [ngStyle]="{'color':click}" style="width:80%" type="button" class="btn btn-primary" (click)="changeEntry(entry);click = 'red'">{{entry.date}}</button>
+              <button id="dateBtn" style="width:80%" type="button" class="btn btn-primary" (click)="changeEntry(entry);">{{entry.date}}</button>
           </ul>
       </div>
     </div>
@@ -15,7 +15,23 @@
             </div>
           </main>
     </div>
-    <div class="col">
+    <div class="col-2">
+        <ul class="list-group mb-2">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Word Count</h6>
+                <small class="text-muted"></small>
+              </div>
+              <span class="text-muted">{{wordCount}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Time Spent Writing</h6>
+                <small class="text-muted"></small>
+              </div>
+              <span class="text-muted">{{totalTime}}</span>
+            </li>
+          </ul>
     </div>
 </div>
 </div>

@@ -1,7 +1,10 @@
+// @flow
 import { Component, OnInit } from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
 import { AuthService } from '../../services/auth.service';
 import {Router} from '@angular/router';
+import * as cal from 'cal-heatmap'
+import * as d3 from 'd3'
 
 @Component({
   selector: 'app-stats',
@@ -9,7 +12,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./stats.component.css']
 })
 export class StatsComponent implements OnInit {
-
   longestStreak:String;
   currentStreak:String;
   wordCount:String;
@@ -18,8 +20,13 @@ export class StatsComponent implements OnInit {
   userName:String
   startDate:String
 
+  dateJSON = [{}]
+  dateJ={1526879817: 1,1527111316: 1}
+
+  carol = new CalHeatMap()
+  
   constructor(private db:AngularFireDatabase, private auth:AuthService, private router:Router) {
-    //may not need fdb
+  
   }
 
   ngOnInit() {
@@ -30,6 +37,7 @@ export class StatsComponent implements OnInit {
     this.get_time()
     this.displayName()
     this.displayStartDate()
+    this.get_timestamps()
   }
 
   // This function gets and shows the user name
@@ -76,8 +84,6 @@ export class StatsComponent implements OnInit {
 
   private displayStartDate(){
     this.db.object(`users/${this.auth.currentUserId}/Date`).valueChanges().take(1).subscribe(data => {
-      console.log(Date());
-      
       this.startDate = data as String
     })
   }
@@ -92,6 +98,20 @@ export class StatsComponent implements OnInit {
     })
   }
 
+  // Retrieve entry timestamps
+   private get_timestamps() {
+     
+    return this.db.list('/Entry', ref => ref.orderByChild('uid').equalTo(this.auth.currentUserId)).valueChanges().subscribe(entries => 
+      { 
+          return entries.map(entry => ({ timestamp: entry['timestamp'] })).map(timestamps=> { 
+            const ts:number = Math.round(timestamps.timestamp/1000)
+            this.dateJSON.push({ [ts]:1})
+            
+          })   
+    })
+
+  }
+
   
 
   private displayTotalTime(seconds){
@@ -103,6 +123,28 @@ export class StatsComponent implements OnInit {
     var m = minutes > 0 ? minutes + (minutes == 1 ? " minute, " : " minutes ") : "";
     this.totalTime = h + m
   }
+
+  onSelect(): void {
+    console.log(this.dateJSON);
+    console.log(this.dateJ);
+    var newObj = Object.assign({}, ...this.dateJSON)
+    console.log(newObj);
+    
+    
+    
+    this.carol.init({
+      itemSelector: "#heatmap",
+      start: new Date(2018, 4), // January, 1st 2000
+      domain: "month",
+      subDomain: "x_day",
+      cellSize: 40,
+      subDomainTextFormat: "%d",
+      range: 3,
+      weekStartOnMonday: false,
+      displayLegend: false,
+      data: newObj
+    })
+  };
 
 
 }

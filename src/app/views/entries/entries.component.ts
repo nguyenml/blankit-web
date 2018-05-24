@@ -15,6 +15,8 @@ export class EntriesComponent implements OnInit {
   entries: any;
   currentText:string = ""; 
   entryDate:string = "";
+  wordCount:string
+  totalTime:string
   click = '';
 
   constructor(private db:AngularFireDatabase, private auth:AuthService, private router:Router, private datePipe:DatePipe) {
@@ -31,6 +33,8 @@ export class EntriesComponent implements OnInit {
   private changeEntry(entry){
     this.entryDate = this.datePipe.transform(Date.parse(entry['date']), 'MMM dd, yyyy');
     this.currentText = entry['text'];
+    this.wordCount = entry['wordcount'];
+    this.totalTime = entry['totalTime'];
   }
 
 }
