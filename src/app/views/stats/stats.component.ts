@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database';
 import { AuthService } from '../../services/auth.service';
 import {Router} from '@angular/router';
-import * as cal from 'cal-heatmap'
-import * as d3 from 'd3'
 
 @Component({
   selector: 'app-stats',
@@ -21,10 +19,7 @@ export class StatsComponent implements OnInit {
   startDate:String
 
   dateJSON = [{}]
-  dateJ={1526879817: 1,1527111316: 1}
 
-  carol = new CalHeatMap()
-  
   constructor(private db:AngularFireDatabase, private auth:AuthService, private router:Router) {
   
   }
@@ -123,28 +118,5 @@ export class StatsComponent implements OnInit {
     var m = minutes > 0 ? minutes + (minutes == 1 ? " minute, " : " minutes ") : "";
     this.totalTime = h + m
   }
-
-  onSelect(): void {
-    console.log(this.dateJSON);
-    console.log(this.dateJ);
-    var newObj = Object.assign({}, ...this.dateJSON)
-    console.log(newObj);
-    
-    
-    
-    this.carol.init({
-      itemSelector: "#heatmap",
-      start: new Date(2018, 4), // January, 1st 2000
-      domain: "month",
-      subDomain: "x_day",
-      cellSize: 40,
-      subDomainTextFormat: "%d",
-      range: 3,
-      weekStartOnMonday: false,
-      displayLegend: false,
-      data: newObj
-    })
-  };
-
 
 }

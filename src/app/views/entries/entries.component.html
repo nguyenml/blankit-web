@@ -1,37 +1,38 @@
 <div class="main">
   <div class="row">
-    <div class="col">
+    <div class="col-2">
       <div *ngFor="let entry of entries">
           <ul>
               <button id="dateBtn" style="width:80%" type="button" class="btn btn-primary" (click)="changeEntry(entry);">{{entry.date}}</button>
           </ul>
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-7">
         <main role="main" class="container">
             <div class="jumbotron">
               <h1>{{entryDate}}</h1>
               <p class="lead">{{currentText}}</p>
             </div>
+            <ul class="list-group mb-2">
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Word Count</h6>
+                  <small class="text-muted"></small>
+                </div>
+                <span class="text-muted">{{wordCount}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Time Spent Writing</h6>
+                  <small class="text-muted"></small>
+                </div>
+                <span class="text-muted">{{totalTime}}</span>
+              </li>
+            </ul>
           </main>
     </div>
-    <div class="col-2">
-        <ul class="list-group mb-2">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Word Count</h6>
-                <small class="text-muted"></small>
-              </div>
-              <span class="text-muted">{{wordCount}}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Time Spent Writing</h6>
-                <small class="text-muted"></small>
-              </div>
-              <span class="text-muted">{{totalTime}}</span>
-            </li>
-          </ul>
+    <div class="col-3">
+        <div id="heatmap"></div>
     </div>
 </div>
 </div>
